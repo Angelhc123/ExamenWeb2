@@ -1,0 +1,32 @@
+# Variables de entorno
+.env
+.env.local
+
+# Dependencias
+/vendor/
+composer.lock
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+/logs/
+
+# Archivos temporales
+/tmp/
+/temp/
+
+# Caché
+/cache/
+
+# Archivos subidos
+/uploads/*
+!/uploads/.gitkeep

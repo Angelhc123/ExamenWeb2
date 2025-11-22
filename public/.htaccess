@@ -1,0 +1,26 @@
+# Archivo .htaccess para reescritura de URLs
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Detectar si está en Railway o en local
+    # En Railway, usar RewriteBase /
+    # En local, usar RewriteBase /consejeria-tutoria/
+    RewriteBase /
+    
+    # Redirigir todo al index.php si no es un archivo o directorio existente
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Deshabilitar listado de directorios
+Options -Indexes
+
+# Configuración de PHP
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+</IfModule>
