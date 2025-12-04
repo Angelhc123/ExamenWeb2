@@ -91,9 +91,8 @@ if (isset($_SESSION['usuario_logueado']) && $_SESSION['usuario_logueado'] === tr
             exit;
         }
     } else {
-        // Redirigir a login.php
-        header('Location: ' . BASE_URL . 'login.php');
-        exit;
+        // Mostrar vista de login directamente
+        require_once APP_PATH . 'views/auth/login.php';
     }
 }
 ?>
