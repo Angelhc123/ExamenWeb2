@@ -4,7 +4,7 @@
  * Sistema de Consejería y Tutoría
  */
 
-// REDIRIGIR DIRECTO AL LOGIN SIMPLE
-header('Location: login.php');
+// REDIRIGIR AL SISTEMA MVC CORRECTO
+header('Location: public/index.php');
 exit;
 ?>

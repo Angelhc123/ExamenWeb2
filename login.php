@@ -1,5 +1,11 @@
 <?php
-// SISTEMA SIMPLE - SIN COMPLICACIONES
+// ESTE LOGIN ESTÁ DEPRECATED - USAR public/index.php
+// Redirigir al sistema correcto
+header('Location: public/index.php');
+exit;
+
+/* 
+// SISTEMA SIMPLE - SIN COMPLICACIONES (DEPRECATED)
 session_start();
 
 // Configuración básica
@@ -128,3 +134,4 @@ if ($_POST) {
     </div>
 </body>
 </html>
+*/
