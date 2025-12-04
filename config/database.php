@@ -10,13 +10,15 @@ if (getenv('RAILWAY_ENVIRONMENT')) {
     $dbUrl = getenv('DATABASE_URL') ?: 'mysql://root:khXYnvvIiNkJklkDngAcGDkLvLSKToZH@shuttle.proxy.rlwy.net:14956/railway';
     $dbParts = parse_url($dbUrl);
     
-    define('DB_HOST', $dbParts['host'] . ':' . $dbParts['port']);
+    define('DB_HOST', $dbParts['host']);
+    define('DB_PORT', $dbParts['port']);
     define('DB_NAME', ltrim($dbParts['path'], '/'));
     define('DB_USER', $dbParts['user']);
     define('DB_PASS', $dbParts['pass']);
 } else {
     // Configuración local
     define('DB_HOST', 'localhost');
+    define('DB_PORT', '3306');
     define('DB_NAME', 'consejeria_tutoria');
     define('DB_USER', 'root');
     define('DB_PASS', '');
@@ -29,7 +31,7 @@ class Database {
     
     private function __construct() {
         try {
-            $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+            $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
             $options = [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
