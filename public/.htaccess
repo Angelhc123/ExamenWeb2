@@ -1,4 +1,4 @@
-# Archivo .htaccess para reescritura de URLs
+# Archivo .htaccess optimizado para Railway
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -14,13 +14,42 @@
     RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
 
+# Seguridad básica
+<Files ".htaccess">
+Order allow,deny
+Deny from all
+</Files>
+
+<Files ".env">
+Order allow,deny
+Deny from all
+</Files>
+
 # Deshabilitar listado de directorios
 Options -Indexes
 
+# Headers de seguridad
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Comprimir archivos estáticos
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
 # Configuración de PHP
-<IfModule mod_php7.c>
+<IfModule mod_php.c>
     php_value upload_max_filesize 10M
     php_value post_max_size 10M
     php_value max_execution_time 300
     php_value max_input_time 300
+    php_value memory_limit 256M
 </IfModule>

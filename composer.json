@@ -3,7 +3,11 @@
     "description": "Sistema de Registro de Atenciones de Consejería y Tutoría",
     "type": "project",
     "require": {
-        "php": "^7.4|^8.0|^8.1|^8.2"
+        "php": "^8.1|^8.2",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*"
     },
     "require-dev": {},
     "autoload": {
@@ -14,6 +18,14 @@
     "scripts": {
         "post-install-cmd": [
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-autoload-dump": [
+            "@php -r \"file_exists('storage') || mkdir('storage', 0755, true);\"",
+            "@php -r \"file_exists('storage/logs') || mkdir('storage/logs', 0755, true);\""
         ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
     }
 }
